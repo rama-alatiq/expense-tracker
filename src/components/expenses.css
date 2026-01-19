@@ -1,0 +1,156 @@
+.expenses-card {
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  min-height: 300px;
+  /* margin-top: 2rem; */
+  padding: 1rem;
+  margin-bottom: 0;
+  
+}
+@media (min-width:992px) {
+    .expenses-card{
+        width: 50%;
+    }
+}
+.options-tab {
+  display: flex;
+  background: #f1f5f9;
+  padding: 0.2rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.options-tab button {
+  border: none;
+  font-weight: 500;
+  font-size: 12px;
+  background-color: transparent;
+  color: #64748b;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Transition all properties for a smoother effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0); /* Add a transparent shadow to reserve space */
+}
+.options-tab .active {
+  background-color: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filter-categories {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.categories-list {
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 12px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.categories-list select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background-color: #f1f5f9;
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
+  border-radius: 12px;
+  color: #030303;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 1em;
+  transition: background-color 0.2s ease-in-out;
+}
+.categories-list select:hover {
+  background-color: #e2e8f0;
+}
+
+.expense-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e2e8f0;
+  gap: 1rem;
+  background-color: #f8fafc;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+.expense-item:hover {
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.145);
+}
+
+.expense-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-left: 1px;
+}
+
+.expense-item-icon i {
+  font-size: 1.2rem;
+  color: #475569;
+}
+
+.expense-item-details {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.expense-item-details .expense-name {
+  font-weight: 450;
+  margin: 0;
+  text-align: start;
+}
+.expense-item-details .expense-category-date {
+  color: grey;
+  font-size: 15px;
+}
+.expense-item-details p {
+  margin: 0;
+  text-align: start;
+}
+
+.expense-item-amount {
+  text-align: right;
+  color: red;
+}
+.income-amount {
+  color: rgb(10, 180, 10);
+}
+
+.expense-item-end {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.expense-item-end i {
+  opacity: 0;
+  color: red;
+  padding: 5px;
+}
+.expense-item:hover i {
+  opacity: 1;
+}
+
+.expense-item-end i:hover {
+  background-color: rgba(253, 232, 232, 0.895);
+  padding: 5px;
+  border-radius: 7px;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+}

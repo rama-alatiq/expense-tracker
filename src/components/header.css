@@ -1,0 +1,72 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2%;
+}
+.logo {
+  background: linear-gradient(
+    135deg,
+    #6334f7 0%,
+    #993ff8 100%
+  );
+  padding: 1%;
+  padding: 0.5rem; 
+  border-radius: 15px;
+  width: 40px;
+  height: 36px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+}
+.logo i {
+  font-size: 2.2rem;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.title {
+  width: 100%;
+  justify-content: center;
+}
+.title h4 {
+  text-align: start;
+  text-indent: 3%;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 0%;
+  margin-top: 0%;
+  white-space: nowrap;
+}
+.title p {
+  text-align: start;
+  text-indent: 3%;
+  font-size: 14px;
+  font-weight: 350;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+.header-button {
+  background: linear-gradient(135deg, #6334f7 0%, #a04ff6 100%);
+  padding: 0.6rem 1.7rem;
+  border: 0cm;
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px; 
+  white-space: nowrap; 
+  box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.1);
+}
+
+.header-button i{
+    align-content: start;
+    font-size: 10px;
+    text-shadow: 0 0 1px #ffffff; 
+}
+
+.header-button:hover {
+  background: linear-gradient(135deg, #562fd6 0%, #8743cf 100%);
+}

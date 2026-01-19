@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.main-container{
+ margin: 0 auto;
+}
+
+.kpi-container {
+  display: flex;
+  gap: 1.5rem; 
+  width: 100%;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.kpi-card {
+  background-color: #fcfcfc;
+  padding: 1.4rem;
+  border-radius: 16px;
+  box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; 
+  flex-basis: 0; 
+}
+
+.kpi-card i{
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 500;
+
+}
+.kpi-card .card-icon{
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  height: 38px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.kpi-card .card-text p {
+ text-align: left;
+ margin: 0.1rem;
+ color: #fcfcfc;
+font-size: 0.9rem;
+}
+
+.expenses-categories{
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin-top: 30px;
+  /* justify-content: space-between; */
+  /* width: 100%; */
+}
+@media(min-width:992px){
+  .expenses-categories{
+    flex-direction: row;
+  }
+}
