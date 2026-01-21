@@ -1,20 +1,39 @@
 import { useState } from "react";
 import "./expenses.css";
+import { fetchCategories } from "../hooks/fetchCategories";
 
 function DisplayExpenses({ expenses, onDelete }) {
+  console.log(expenses);
   const [activeTab, setActiveTab] = useState("All");
+  const { categories, error } = fetchCategories();
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  // Correctly filter the expenses based on the active tab
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  // filter the expenses based on the active tab
   const filteredExpenses = expenses.filter((expense) => {
+    if (selectedCategory && expense.category?.id !== selectedCategory)
+      return false;
     if (activeTab === "Income") {
-      return expense.amount.startsWith("+");
+      return expense.type.id === 2;
     }
     if (activeTab === "Expenses") {
-      return expense.amount.startsWith("-");
+      return expense.type.id === 1;
     }
-    // If the tab is "All", return true for every item
     return true;
   });
+  // order expenses in ascending order
+  const sortedExpenses = filteredExpenses.sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at),
+  );
+
+  console.log("filtered expenses: ", filteredExpenses);
 
   return (
     <>
@@ -22,63 +41,62 @@ function DisplayExpenses({ expenses, onDelete }) {
         <div className="filter-categories">
           <div className="options-tab">
             <button
-              onClick={() => setActiveTab("All")}
+              onClick={() => handleTabChange("All")}
               className={activeTab == "All" ? "active" : ""}
             >
               All
             </button>
             <button
-              onClick={() => setActiveTab("Expenses")}
+              onClick={() => handleTabChange("Expenses")}
               className={activeTab == "Expenses" ? "active" : ""}
             >
               Expenses
             </button>
             <button
-              onClick={() => setActiveTab("Income")}
+              onClick={() => handleTabChange("Income")}
               className={activeTab == "Income" ? "active" : ""}
             >
               Income
             </button>
           </div>
           <div className="categories-list">
-            <select>
-              <option value="All Categories" defaultChecked>
-                All Categories
-              </option>
-              <option value="Food">Food</option>
-              <option value="Transport">Transport</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Bills">Bills</option>
-              <option value="Health">Health</option>
-              <option value="Other">Other</option>
+            <select value={selectedCategory} onChange={handleCategoryChange}>
+              <option value="">All Categories</option>
+              {categories.map((element) => (
+                <option value={element.id} key={element.id}>
+                  {element.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
         <div className="expense-list">
-          {filteredExpenses.map((expense) => (
+          {sortedExpenses.map((expense) => (
             <div key={expense.id} className="expense-item">
               <div
                 className="expense-item-icon"
-                style={{ backgroundColor: expense.bgcolor }}
+                style={{ backgroundColor: expense.category.bgcolor }}
               >
-                <i className={expense.icon}></i>
+                <i className={expense.category.icon}></i>
               </div>
               <div className="expense-item-details">
                 <p className="expense-name">{expense.name}</p>
-                <p className="expense-category-date">{`${expense.category}  -  ${expense.date}`}</p>
+                <p className="expense-category-date">{`${expense.category.name}  -  ${expense.date}`}</p>
               </div>
               <div className="expense-item-end">
                 <p
                   className={
-                    expense.amount.startsWith("+")
+                    expense.type.id == 2
                       ? "income-amount"
                       : "expense-item-amount"
                   }
                 >
-                  {expense.amount}
+                  {`${expense.type.id == 1 ? "-" : "+"}$${Math.abs(expense.amount)}`}
                 </p>
-                <i className="lni lni-trash-can" onClick={()=>onDelete(expense.id)}></i>
+                <i
+                  className="lni lni-trash-can"
+                  onClick={() => onDelete(expense.id)}
+                ></i>
               </div>
             </div>
           ))}

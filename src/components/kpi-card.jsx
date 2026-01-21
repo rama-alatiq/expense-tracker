@@ -1,3 +1,5 @@
+
+import "./kpi-card.css";
 function KpiCard({ title, amount, icon, color }) {
   const cardStyle = {
     backgroundColor: color,

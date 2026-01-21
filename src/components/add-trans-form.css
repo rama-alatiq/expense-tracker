@@ -20,6 +20,7 @@
   border: 0;
   width: 188px;
   background-color: #f3f3f5;
+ cursor: pointer;
 }
 .options-tab-reusable .active {
   background-color: #ffffff;

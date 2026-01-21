@@ -1,26 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateOptions from "./options-comp";
 import "./add-trans-form.css";
+import { supabase } from "../supabaseClient";
+import { fetchCategories } from "../hooks/fetchCategories";
 
 function AddTransactionForm({ onClose, onAddTransaction }) {
   const [transactionType, setTransactionType] = useState("Expense");
   const options = ["Expense", "Income"];
+  const {categories, error} = fetchCategories();
+
   const [formData, setFormData] = useState({
     title: "",
     amount: "",
-    category: "",
+    categoryId: "",
     date: "",
   });
 
-  const categories = [
-    "Food",
-    "Transport",
-    "Shopping",
-    "Entertainment",
-    "Bills",
-    "Health",
-    "Other",
-  ];
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -31,12 +26,12 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    
+    e.preventDefault();
+
     if (onAddTransaction) {
       onAddTransaction({
         ...formData,
-        type: transactionType
+        type: transactionType,
       });
     }
     onClose();
@@ -76,7 +71,9 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
               <input
                 type="number"
                 value={formData.amount}
+                min="0.01"
                 name="amount"
+                step="0.01"
                 onChange={handleInputChange}
                 required
               />
@@ -84,8 +81,8 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
             <label>
               Category
               <select
-                name="category"
-                value={formData.category}
+                name="categoryId"
+                value={formData.categoryId}
                 onChange={handleInputChange}
                 required
               >
@@ -93,8 +90,8 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
                   Select Category
                 </option>
                 {categories.map((element) => (
-                  <option key={element} value={element}>
-                    {element}
+                  <option key={element.id} value={element.id}>
+                    {element.name}
                   </option>
                 ))}
               </select>
