@@ -7,15 +7,16 @@ function DisplayExpenses({ expenses, onDelete }) {
   const [activeTab, setActiveTab] = useState("All");
   const { categories, error } = fetchCategories();
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  
+  
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
-
+  
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-
+  
   // filter the expenses based on the active tab
   const filteredExpenses = expenses.filter((expense) => {
     if (selectedCategory && expense.category?.id !== selectedCategory)
@@ -32,9 +33,10 @@ function DisplayExpenses({ expenses, onDelete }) {
   const sortedExpenses = filteredExpenses.sort(
     (a, b) => new Date(b.created_at) - new Date(a.created_at),
   );
-
+  
   console.log("filtered expenses: ", filteredExpenses);
-
+  const isEmpty=expenses.length===0;
+  
   return (
     <>
       <div className="expenses-card">
@@ -71,6 +73,7 @@ function DisplayExpenses({ expenses, onDelete }) {
           </div>
         </div>
         <div className="expense-list">
+          {isEmpty&&<p className="empty-list-msg">No expenses recorded. Time to add your first transaction!</p>}
           {sortedExpenses.map((expense) => (
             <div key={expense.id} className="expense-item">
               <div

@@ -154,3 +154,9 @@
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
 }
+.empty-list-msg{
+  text-align: center;
+  margin-top: 20%;
+  color: #64748b;
+  font-size: small;
+}

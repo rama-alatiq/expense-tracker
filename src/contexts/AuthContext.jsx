@@ -28,8 +28,30 @@ export const AuthProvider = ({ children }) => {
     user,
     signIn: (email, password) =>
       supabase.auth.signInWithPassword({ email, password }),
-    signUp: (email, password) => supabase.auth.signUp({ email, password }),
-    signOut: () => supabase.auth.signout(),
+    signUp: async (email, password) => {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      console.log("Supabase signUp raw response - data:", data);
+      console.log("Supabase signUp raw response - error:", error);
+      if (error) {
+        if (error.message.includes("User already registered")) {
+          return {
+            error: {
+              message:
+                "This email is already registered. Please sign in or use different email",
+            },
+          };
+        }
+        return { error };
+      }
+
+      if(data.user && data.user.identities && data.user.identities.length===0){
+        return {error:{message:"This email is already registered. Please use different email "}}
+      }
+
+
+      return { data, error: null };
+    },
+    signOut: () => supabase.auth.signOut(),
   };
 
   return (
@@ -39,6 +61,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = ()=>{
-    return useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

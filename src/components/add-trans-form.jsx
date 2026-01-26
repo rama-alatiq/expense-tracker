@@ -3,11 +3,13 @@ import CreateOptions from "./options-comp";
 import "./add-trans-form.css";
 import { supabase } from "../supabaseClient";
 import { fetchCategories } from "../hooks/fetchCategories";
+import { parse } from "uuid";
 
-function AddTransactionForm({ onClose, onAddTransaction }) {
+function AddTransactionForm({ onClose, onAddTransaction, userId }) {
   const [transactionType, setTransactionType] = useState("Expense");
   const options = ["Expense", "Income"];
-  const {categories, error} = fetchCategories();
+  const { categories} = fetchCategories();
+  const[error,setError]=useState(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -25,16 +27,28 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (onAddTransaction) {
-      onAddTransaction({
-        ...formData,
-        type: transactionType,
-      });
+    if (
+      !formData.title ||
+      !formData.amount ||
+      parseFloat(formData.amount)<=0 ||
+      !formData.categoryId ||
+      !formData.date
+    ) {
+      setError("Please fill in all fields");
+      return;
     }
+    setError(null);
+    await onAddTransaction({ ...formData,type:transactionType, userId });
     onClose();
+
+    // if (onAddTransaction) {
+    //   onAddTransaction({
+    //     ...formData,
+    //     type: transactionType,
+    //   });
+    // }
   };
 
   return (
@@ -55,6 +69,7 @@ function AddTransactionForm({ onClose, onAddTransaction }) {
             activeTab={transactionType}
             setActiveTab={setTransactionType}
           />
+          {error && <p className="error-message">{error}</p>}
           <div className="input-fields">
             <label>
               Title

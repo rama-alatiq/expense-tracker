@@ -1,0 +1,139 @@
+.auth-logo {
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(135deg, #6334f7 0%, #993ff8 100%);
+  padding: 1%;
+  padding: 0.5rem;
+  border-radius: 15px;
+  height: 36px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 50px;
+}
+.auth-logo i {
+  font-size: 2.2rem;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.auth-title h4 {
+  margin-top: 18px;
+  font-size: x-large;
+  font-weight: 500;
+  margin-bottom: 0%;
+  color: #333333;
+}
+.auth-title p {
+  margin-top: 2px;
+  font-size: medium;
+  font-weight: 200;
+  margin-bottom: 0%;
+  color: #333333;
+}
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 0px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #ffffff;
+}
+
+.auth-container h2 {
+  color: #333;
+  text-align: start;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0%;
+}
+.auth-container h6 {
+  color: #555;
+  text-align: start;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 0%;
+}
+
+.auth-container .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.auth-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 550;
+  color: #333333;
+  font-size: 12px;
+}
+
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 13px;
+  border: 0px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #f3f3f5;
+}
+
+.auth-container input[type="email"] {
+  font-size: 12px;
+}
+.auth-container input[type="password"]::placeholder {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.auth-container button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #6334f7 0%, #993ff8 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.auth-container button[type="submit"]:disabled {
+  background-color: #a0c8ff;
+  cursor: not-allowed;
+}
+
+.auth-error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
+}
+.email-confirm-message{
+  color: #1dbe60;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9em;
+}
+.auth-container .btn {
+  margin-top: 20px;
+  color: #666;
+  font-size: small;
+}
+
+.auth-container p button {
+  background: none;
+  border: none;
+  color: #9810fa;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+

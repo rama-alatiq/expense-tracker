@@ -8,8 +8,10 @@ import KpiCard from "./components/kpi-card.jsx";
 import { supabase } from "./supabaseClient.js";
 import { v4 as uuidv4 } from "uuid";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Auth from "./components/Auth.jsx";
+import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
 
-function App() {
+function AppContent() {
   const [categories, setCategories] = useState([]);
   const [expenses, setExpense] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +22,10 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalExpenses, setTotalExpenses] = useState(0);
 
+  const { user, signOut } = useAuth();
+
   const fetchCategories = async () => {
+    if (!user) return;
     const { data, error } = await supabase.from("categories").select("*");
     if (error) {
       console.error("Error fetching categories: ", error);
@@ -31,7 +36,11 @@ function App() {
   };
 
   const fetchExpenses = async () => {
-    const { data, error } = await supabase.from("expenses").select(`
+    if (!user) return;
+    const { data, error } = await supabase
+      .from("expenses")
+      .select(
+        `
       *,
       category(
       id,
@@ -40,7 +49,9 @@ function App() {
       bgcolor
       ),
       type(id,typeName)
-      `);
+      `,
+      )
+      .eq(`user_id`, user.id);
     if (error) {
       console.error("Error fetching expenses: ,error");
       setError("Failed to fetch categories");
@@ -65,7 +76,7 @@ function App() {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     let income = 0;
@@ -90,8 +101,7 @@ function App() {
   };
 
   const addTransaction = async (data) => {
-    const { title, amount, categoryId, date, type, user } = data;
-    const userId = uuidv4();
+    const { title, amount, categoryId, date, type, userId } = data;
     console.log("category: ", categoryId);
 
     const newExpense = {
@@ -118,7 +128,7 @@ function App() {
   };
 
   const deleteTransaction = async (id) => {
-    const { error } = await supabase.from("expenses").delete().eq("id", id);
+    const { error } = await supabase.from("expenses").delete().eq("id", id).eq(`user_id`,user.id);
     if (error) {
       console.error("Error deleting transactions: ", error);
       setError("Failed to delete transaction");
@@ -134,8 +144,19 @@ function App() {
   };
 
   console.log(isModalOpen);
+
+  const handleSignOut=async()=>{
+    const {error} =await signOut();
+    if(error){
+      console.error("error signing out:",error);
+    }
+  };
+
   return (
     <div className="main-container">
+      <button className="sign-out-button" onClick={handleSignOut}>
+        Sign Out
+      </button>
       <Header onAddTransactionClick={toggleModal} />
       <div className="kpi-container">
         <KpiCard
@@ -168,10 +189,27 @@ function App() {
         <AddTransactionForm
           onClose={toggleModal}
           onAddTransaction={addTransaction}
+          userId={user.id}
         />
       )}
     </div>
   );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AuthChecker />
+    </AuthProvider>
+  );
+}
+
+function AuthChecker() {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return <div>Loading authentication...</div>;
+  }
+  return user ? <AppContent /> : <Auth />;
 }
 
 export default App;
