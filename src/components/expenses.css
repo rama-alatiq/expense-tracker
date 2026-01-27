@@ -6,12 +6,11 @@
   /* margin-top: 2rem; */
   padding: 1rem;
   margin-bottom: 0;
-  
 }
-@media (min-width:992px) {
-    .expenses-card{
-        width: 50%;
-    }
+@media (min-width: 992px) {
+  .expenses-card {
+    width: 50%;
+  }
 }
 .options-tab {
   display: flex;
@@ -47,7 +46,7 @@
 .categories-list {
   padding: 10px;
   background-color: transparent;
-  border-radius: 12px;
+  border-radius: 20px;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -60,7 +59,7 @@
   border: none;
   background-color: #f1f5f9;
   padding: 0.6rem 2.5rem 0.6rem 1rem;
-  border-radius: 12px;
+  border-radius: 20px;
   color: #030303;
   font-weight: 500;
   font-size: 13px;
@@ -154,9 +153,43 @@
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
 }
-.empty-list-msg{
+.empty-list-msg {
   text-align: center;
   margin-top: 20%;
   color: #64748b;
   font-size: small;
+}
+@media (max-width: 767px) {
+  .filter-categories {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0%;
+  }
+  .options-tab {
+    width: 200px;
+    justify-content: center;
+  }
+  .categories-list {
+    width: 300px;
+    margin-bottom: 10px;
+    margin-top: 0%;
+  }
+  .categories-list select {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .expense-item-icon {
+    width: 50px;
+  }
+  .expense-date-separator {
+    display: none;
+  }
+
+  .expense-date-mobile-block {
+    display: block;
+  }
+  .expense-item-details {
+    width: 50%;
+  }
 }

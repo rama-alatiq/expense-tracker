@@ -6,17 +6,13 @@
   margin-top: 15px;
 }
 .logo {
-  background: linear-gradient(
-    135deg,
-    #6334f7 0%,
-    #993ff8 100%
-  );
+  background: linear-gradient(135deg, #6334f7 0%, #993ff8 100%);
   padding: 1%;
-  padding: 0.5rem; 
+  padding: 0.5rem;
   border-radius: 15px;
   width: 40px;
   height: 36px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .logo i {
   font-size: 2.2rem;
@@ -57,17 +53,50 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px; 
-  white-space: nowrap; 
+  gap: 10px;
+  white-space: nowrap;
   box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.1);
 }
 
-.header-button i{
-    align-content: start;
-    font-size: 10px;
-    text-shadow: 0 0 1px #ffffff; 
+.header-button i {
+  align-content: start;
+  font-size: 10px;
+  text-shadow: 0 0 1px #ffffff;
 }
 
 .header-button:hover {
   background: linear-gradient(135deg, #562fd6 0%, #8743cf 100%);
+}
+
+@media (max-width: 767px) {
+  .app-header {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+  }
+  .logo {
+    margin-bottom: 12px;
+  }
+  .title {
+    width: auto;
+    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .title h4,
+  .title p {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.2rem 0.2rem;
+    margin-bottom: 0%;
+    margin-top: 0%;
+  }
+
+  .header-button {
+    width: 70%;
+    justify-content: center;
+    padding: 0.6rem 1.3rem;
+  }
 }

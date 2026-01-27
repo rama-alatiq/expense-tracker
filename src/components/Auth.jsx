@@ -70,7 +70,7 @@ function Auth() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="john@example.com"
+              placeholder="name@example.com"
             />
           </div>
           <div className="form-group">

@@ -63,14 +63,14 @@
   font-size: 2rem;
   line-height: 1;
   cursor: pointer;
-  color: #888;
+  color: #888; 
 }
 
 .input-fields {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
 }
 
 .input-fields label {
@@ -105,4 +105,27 @@
   color: #ffffff;
   font-weight: 500;
   font-size: 14px;
+}
+@media (max-width:768px) {
+.modal-content{
+  width:80%
+}
+.options-tab-reusable button{
+  width:50%;
+}
+.close-button{
+  position: absolute;
+  top:10px;
+  right: 10px;
+}
+.input-fields {
+  gap: 0.6rem;
+}
+
+.input-fields input{
+  margin-top: 0.30rem;
+}
+.form-footer {
+  margin-top: 1.3rem;
+}
 }
