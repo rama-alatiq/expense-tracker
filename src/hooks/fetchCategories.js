@@ -9,8 +9,8 @@ export const fetchCategories = () => {
     const fetchCategories = async () => {
       const { data, error } = await supabase
         .from("categories")
-        .select("id,name");
-
+        .select("id,name")
+        .order("sort",{ascending:true});
       if (error) {
         console.error("Error fetching categories: ", error);
         setError(error);

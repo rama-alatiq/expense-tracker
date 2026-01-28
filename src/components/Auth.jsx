@@ -9,6 +9,8 @@ function Auth() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [authError, setAuthError] = useState(null);
+  const [name, setName] = useState("");
+  const [confirmPass, setConfirmedPass] = useState("");
 
   const { signIn, signUp } = useAuth();
 
@@ -18,15 +20,23 @@ function Auth() {
     setAuthError(null);
     setMessage("");
 
-    if (isSignUp && password.length < 6) {
-      setAuthError("Password must be at least 6 characters long");
-      setLoading(false);
-      return;
+    if (isSignUp) {
+      if (password.length < 8) {
+        setAuthError("Password must be at least 8 characters long");
+        setLoading(false);
+        return;
+      }
+      if(password !==confirmPass){
+        setAuthError("Passwords do not match");
+        setLoading(false);
+        return;
+      }
+
     }
 
     try {
       if (isSignUp) {
-        const { error } = await signUp(email, password);
+        const { error } = await signUp(email, password,name);
         if (error) {
           console.log("supabase signUp error: ", error);
           setAuthError(error.message);
@@ -62,6 +72,18 @@ function Auth() {
             : "Enter your credentials to access your account"}
         </h6>
         <form onSubmit={handleSubmit}>
+          {isSignUp &&(
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required 
+              placeholder="rama kamal"
+              />
+            </div>
+          )}
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -84,6 +106,18 @@ function Auth() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {isSignUp&&(
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input type="password"
+              id="confirmPassword"
+              required
+              placeholder="••••••••"
+              value={confirmPass}
+              onChange={(e) => setConfirmedPass(e.target.value)}
+              />
+            </div>
+          )}
           <button type="submit" disabled={loading}>
             {loading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
             {}

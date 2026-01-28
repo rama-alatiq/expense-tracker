@@ -28,8 +28,12 @@ export const AuthProvider = ({ children }) => {
     user,
     signIn: (email, password) =>
       supabase.auth.signInWithPassword({ email, password }),
-    signUp: async (email, password) => {
-      const { data, error } = await supabase.auth.signUp({ email, password });
+    signUp: async (email, password,name) => {
+      const { data, error } = await supabase.auth.signUp({ email, password,options:{
+        data:{
+          name
+        }
+      } });
       // console.log("Supabase signUp raw response - data:", data);
       // console.log("Supabase signUp raw response - error:", error);
       if (error) {

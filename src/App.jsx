@@ -63,7 +63,7 @@ function AppContent() {
             ? `+${expense.amount}`
             : `-${expense.amount}`,
       }));
-      console.log("fetched expenses: ", formattedData);
+      // console.log("fetched expenses: ", formattedData);
       setExpense(formattedData);
     }
   };
@@ -96,13 +96,13 @@ function AppContent() {
   }, [expenses]);
 
   const toggleModal = () => {
-    console.log("current state:", isModalOpen);
+    // console.log("current state:", isModalOpen);
     setIsModalOpen(!isModalOpen);
   };
 
   const addTransaction = async (data) => {
     const { title, amount, categoryId, date, type, userId } = data;
-    console.log("category: ", categoryId);
+    // console.log("category: ", categoryId);
 
     const newExpense = {
       name: title,
@@ -128,7 +128,11 @@ function AppContent() {
   };
 
   const deleteTransaction = async (id) => {
-    const { error } = await supabase.from("expenses").delete().eq("id", id).eq(`user_id`,user.id);
+    const { error } = await supabase
+      .from("expenses")
+      .delete()
+      .eq("id", id)
+      .eq(`user_id`, user.id);
     if (error) {
       console.error("Error deleting transactions: ", error);
       setError("Failed to delete transaction");
@@ -143,12 +147,12 @@ function AppContent() {
     await fetchExpenses();
   };
 
-  console.log(isModalOpen);
+  // console.log(isModalOpen);
 
-  const handleSignOut=async()=>{
-    const {error} =await signOut();
-    if(error){
-      console.error("error signing out:",error);
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      console.error("error signing out:", error);
     }
   };
 

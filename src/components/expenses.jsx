@@ -3,7 +3,7 @@ import "./expenses.css";
 import { fetchCategories } from "../hooks/fetchCategories";
 
 function DisplayExpenses({ expenses, onDelete }) {
-  console.log(expenses);
+  // console.log(expenses);
   const [activeTab, setActiveTab] = useState("All");
   const { categories, error } = fetchCategories();
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -33,7 +33,7 @@ function DisplayExpenses({ expenses, onDelete }) {
     (a, b) => new Date(b.created_at) - new Date(a.created_at),
   );
 
-  console.log("filtered expenses: ", filteredExpenses);
+  // console.log("filtered expenses: ", filteredExpenses);
   const isEmpty = expenses.length === 0;
 
   return (

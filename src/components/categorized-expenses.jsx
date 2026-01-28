@@ -24,8 +24,8 @@ function ExpensesByCategory({ expenses }) {
     value,
   }));
 
-  console.log("Expenses", expenses);
-  console.log("chartData", chartData);
+  // console.log("Expenses", expenses);
+  // console.log("chartData", chartData);
   // const COLORS = ["#F97316", "#A855F7", "#3B82F6"];
   const COLORS = chartData.map(
     (_, index) => `hsl(${(index * 40) % 360}, 70%, 50%)`,

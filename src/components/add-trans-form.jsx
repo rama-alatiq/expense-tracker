@@ -42,13 +42,6 @@ function AddTransactionForm({ onClose, onAddTransaction, userId }) {
     setError(null);
     await onAddTransaction({ ...formData,type:transactionType, userId });
     onClose();
-
-    // if (onAddTransaction) {
-    //   onAddTransaction({
-    //     ...formData,
-    //     type: transactionType,
-    //   });
-    // }
   };
 
   return (
