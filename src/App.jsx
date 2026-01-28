@@ -165,21 +165,21 @@ function AppContent() {
       <div className="kpi-container">
         <KpiCard
           title="Total Balance"
-          amount={`$${totalBalance.toFixed(2)}`}
+          amount={`JD${totalBalance.toFixed(2)}`}
           icon="lni lni-dollar"
           color="#00b894"
         />
 
         <KpiCard
           title="Total Income"
-          amount={`$${totalIncome.toFixed(2)}`}
+          amount={`JD${totalIncome.toFixed(2)}`}
           icon="lni lni-stats-up"
           color="#445FFE"
         />
 
         <KpiCard
           title="Total Expenses"
-          amount={`$${totalExpenses.toFixed(2)}`}
+          amount={`JD${totalExpenses.toFixed(2)}`}
           icon="lni lni-stats-down"
           color="#d63031"
         />
