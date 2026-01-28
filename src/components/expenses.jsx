@@ -103,7 +103,7 @@ function DisplayExpenses({ expenses, onDelete }) {
                       : "expense-item-amount"
                   }
                 >
-                  {`${expense.type.id == 1 ? "-" : "+"}JD${Math.abs(expense.amount)}`}
+                  {`${expense.type.id == 1 ? "-" : "+"}${Math.abs(expense.amount)}  JOD`}
                 </p>
                 <i
                   className="lni lni-trash-can"

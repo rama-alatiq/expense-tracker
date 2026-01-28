@@ -124,6 +124,7 @@
 }
 
 .expense-item-amount {
+  width: 80px;
   text-align: right;
   color: red;
 }
